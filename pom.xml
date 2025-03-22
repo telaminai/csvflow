@@ -34,9 +34,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:https://github.com/telaminai/csvflowgit</connection>
-        <developerConnection>scm:git:https://github.com/telaminai/csvflowgit</developerConnection>
-        <url>https://github.com/telaminai/csvflowgit</url>
+        <connection>scm:git:https://github.com/telaminai/csvflow.git</connection>
+        <developerConnection>scm:git:https://github.com/telaminai/csvflow.git</developerConnection>
+        <url>https://github.com/telaminai/csvflow</url>
         <tag>HEAD</tag>
     </scm>
 
