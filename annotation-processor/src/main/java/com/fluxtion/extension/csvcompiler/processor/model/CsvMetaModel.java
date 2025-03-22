@@ -78,8 +78,9 @@ public class CsvMetaModel implements CodeGeneratorModel {
         fieldMap.computeIfAbsent(fieldName, FieldModel::of).setGetterMethod(methodName);
     }
 
-    public void registerFieldType(String fieldName, String type) {
+    public void registerFieldType(String fieldName, String type, String fqn) {
         fieldMap.computeIfAbsent(fieldName, FieldModel::of).setType(type);
+        fieldMap.computeIfAbsent(fieldName, FieldModel::of).setFqnType(fqn);
     }
 
     public void setInputColumnName(String fieldName, String columnName) {
@@ -193,8 +194,10 @@ public class CsvMetaModel implements CodeGeneratorModel {
     private static class FieldModel {
         private final String name;
         private String type;
+        private String fqnType;
         private String getterMethod;
         private String setterMethod;
+        private boolean enumField = false;
         private FieldToCsvInfo fieldToCsvInfoInfo;
         private CsvToFieldInfo csvToFieldInfo;
 
@@ -207,10 +210,10 @@ public class CsvMetaModel implements CodeGeneratorModel {
             csvToFieldInfo = new CsvToFieldInfo();
             csvToFieldInfo.setSourceFieldName(name);
             csvToFieldInfo.setOutFieldName(name);
-            csvToFieldInfo.setTarget(getterMethod, setterMethod, false, type, "target");
+            csvToFieldInfo.setTarget(getterMethod, setterMethod, enumField, (enumField ? fqnType : type), "target");
             fieldToCsvInfoInfo = new FieldToCsvInfo();
             fieldToCsvInfoInfo.setSourceMethod(getterMethod);
-            fieldToCsvInfoInfo.setEnumField(false);
+            fieldToCsvInfoInfo.setEnumField(enumField);
             fieldToCsvInfoInfo.setEscapeOutputField(false);
             fieldToCsvInfoInfo.setWriteFieldToOutput(true);
             fieldToCsvInfoInfo.setSourceType(type);
@@ -267,11 +270,13 @@ public class CsvMetaModel implements CodeGeneratorModel {
         }
 
         public void setEnumField() {
+            enumField = true;
             if(fieldToCsvInfoInfo != null) {
                 fieldToCsvInfoInfo.setEnumField(true);
             }
             if(csvToFieldInfo != null) {
                 csvToFieldInfo.setTargetIsEnum(true);
+                csvToFieldInfo.setTarget(getterMethod, setterMethod, enumField, (enumField ? fqnType : type), "target");
             }
         }
     }

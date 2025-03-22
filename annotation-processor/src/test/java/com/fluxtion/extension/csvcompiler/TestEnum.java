@@ -1,4 +1,4 @@
-package com.fluxtion.extension.csvcompiler.beans;
+package com.fluxtion.extension.csvcompiler;
 
 public enum TestEnum {
     VALUE1, VALUE2;

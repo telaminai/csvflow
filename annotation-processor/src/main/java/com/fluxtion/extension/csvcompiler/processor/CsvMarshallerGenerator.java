@@ -332,14 +332,16 @@ public class CsvMarshallerGenerator implements Processor {
                     .filter(el -> fluent || el.getSimpleName().toString().startsWith("get") || el.getSimpleName().toString().startsWith("is"))
                     .map(el -> {
                         String type = el.getReturnType().toString();
+                        String fqn = el.asType().toString();
                         Element element = processingEnv.getTypeUtils().asElement(el.getReturnType());
                         if (element != null) {
+                            fqn = element.asType().toString();
                             type = element.getSimpleName().toString();
                         }
                         String prefix = type.equalsIgnoreCase("boolean") ? "is" : "get";
                         String getMethodName = el.getSimpleName().toString();
                         String fieldName = StringUtils.uncapitalize(StringUtils.removeStart(getMethodName, prefix));
-                        csvMetaModel.registerFieldType(fieldName, type);
+                        csvMetaModel.registerFieldType(fieldName, type, fqn);
                         return getMethodName;
                     })
                     .forEach(csvMetaModel::registerGetMethod);
@@ -349,14 +351,16 @@ public class CsvMarshallerGenerator implements Processor {
                     .filter(e -> e.getKind().isField())
                     .forEach(e -> {
                         String type = e.asType().toString();
+                        String fqn = e.asType().toString();
                         Element element = processingEnv.getTypeUtils().asElement(e.asType());
                         if (element != null) {
                             type = element.getSimpleName().toString();
+                            fqn = element.asType().toString();
                         }
                         String fieldName = e.getSimpleName().toString();
                         String prefix = type.equalsIgnoreCase("boolean") ? "is" : "get";
                         String methodName = fluent ? fieldName : prefix + StringUtils.capitalize(fieldName);
-                        csvMetaModel.registerFieldType(fieldName, type);
+                        csvMetaModel.registerFieldType(fieldName, type, fqn);
                         csvMetaModel.registerGetMethod(methodName);
                     });
         }

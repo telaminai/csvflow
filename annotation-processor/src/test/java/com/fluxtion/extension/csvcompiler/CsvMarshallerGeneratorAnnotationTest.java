@@ -177,7 +177,7 @@ public class CsvMarshallerGeneratorAnnotationTest {
         Util.compileInstance("com.fluxtion.extension.csvcompiler.BeanWitSt",
                 "package com.fluxtion.extension.csvcompiler;\n" +
                         "import com.fluxtion.extension.csvcompiler.annotations.CsvMarshaller;\n" +
-                        "import com.fluxtion.extension.csvcompiler.beans.TestEnum;\n" +
+                        "import com.fluxtion.extension.csvcompiler.TestEnum;\n" +
                         "\n" +
                         "@CsvMarshaller\n" +
                         "public class BeanWitSt {\n" +

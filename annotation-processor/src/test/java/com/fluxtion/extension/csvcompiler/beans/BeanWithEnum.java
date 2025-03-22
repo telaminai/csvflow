@@ -1,5 +1,6 @@
 package com.fluxtion.extension.csvcompiler.beans;
 
+import com.fluxtion.extension.csvcompiler.TestEnum;
 import com.fluxtion.extension.csvcompiler.annotations.CsvMarshaller;
 import lombok.Data;
 

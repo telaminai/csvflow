@@ -1,7 +1,6 @@
 package com.fluxtion.extension.csvcompiler;
 
 import com.fluxtion.extension.csvcompiler.beans.BeanWithEnum;
-import com.fluxtion.extension.csvcompiler.beans.TestEnum;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
