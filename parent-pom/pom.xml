@@ -35,9 +35,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:https://github.com/telaminai/csvflowgit</connection>
-        <developerConnection>scm:git:https://github.com/telaminai/csvflowgit</developerConnection>
-        <url>https://github.com/telaminai/csvflowgit</url>
+        <connection>scm:git:https://github.com/telaminai/csvflow.git</connection>
+        <developerConnection>scm:git:https://github.com/telaminai/csvflow.git</developerConnection>
+        <url>https://github.com/telaminai/csvflow</url>
         <tag>HEAD</tag>
     </scm>
 
@@ -86,86 +86,16 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.2.0</version>
-                        <executions>
-                            <execution>
-                                <id>attach-javadocs</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                                <configuration> <!-- add this to disable checking -->
-                                    <attach>true</attach>
-                                    <doclint>none</doclint>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>com.coderplus.maven.plugins</groupId>
-                        <artifactId>copy-rename-maven-plugin</artifactId>
-                        <version>1.0.1</version>
-                        <executions>
-                            <execution>
-                                <id>copy-license-file</id>
-                                <phase>generate-sources</phase>
-                                <goals>
-                                    <goal>copy</goal>
-                                </goals>
-                                <configuration>
-                                    <sourceFile>${project.basedir}/LICENSE</sourceFile>
-                                    <destinationFile>
-                                        ${project.build.outputDirectory}/META-INF/LICENSE-fluxtion-service-starter
-                                    </destinationFile>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>1.6.13</version>
-                        <extensions>true</extensions>
-                        <configuration>
-                            <serverId>ossrh</serverId>
-                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.6</version>
-                        <executions>
-                            <execution>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                                <configuration>
-                                    <gpgArguments>
-                                        <arg>--pinentry-mode</arg>
-                                        <arg>loopback</arg>
-                                    </gpgArguments>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
                 </plugins>
             </build>
         </profile>
     </profiles>
 
     <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
         <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <id>repsy-fluxtion</id>
+            <name>Fluxtion repository on Repsy</name>
+            <url>https://repo.repsy.io/mvn/fluxtion/fluxtion-public</url>
         </repository>
     </distributionManagement>
 
