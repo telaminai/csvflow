@@ -5,12 +5,12 @@
     <parent>
        <groupId>com.telamin</groupId>
         <artifactId>csvflow-parentpom</artifactId>
-        <version>0.2.2-SNAPSHOT</version>
+        <version>0.2.1-SNAPSHOT</version>
         <relativePath>../parent-pom/pom.xml</relativePath>
     </parent>
 
     <artifactId>csvflow-example</artifactId>
-    <version>0.2.2-SNAPSHOT</version>
+    <version>0.2.1-SNAPSHOT</version>
     <name>csvflow :: example</name>
 
     <properties>
